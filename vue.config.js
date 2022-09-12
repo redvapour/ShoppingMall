@@ -1,4 +1,18 @@
-const { defineConfig } = require('@vue/cli-service')
+const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
-  transpileDependencies: true
-})
+  transpileDependencies: true,
+  lintOnSave: false,
+  devServer: {
+    hot: true, //自动保存
+    // open: true, //自动启动
+    port: 8888, //默认端口号
+    host: "127.0.0.1",
+    proxy: {
+      "/api": {
+        // 只对请求路由以/api开头的请求进行代理转发
+        target: "http://gmall-h5-api.atguigu.cn", // 转发的目标url
+        changeOrigin: true, // 支持跨域
+      },
+    },
+  },
+});
